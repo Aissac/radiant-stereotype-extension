@@ -34,20 +34,33 @@ describe Page do
   
   describe Page, "handling new_with_defaults_with_stereotype" do
     
-    before(:all) do
-      @config = add_to_config_table
+    before do
+    @parent = pages(:parent)
+    @page = @parent.children.new_with_defaults_with_stereotype(config_hash)
+    end
+
+    it "creates a new page with stereotype.post.layout Layout" do
+      layout = layouts(:main)
+      @page.layout_id.should == layout.id
     end
     
-    it "" do
-      puts Page.new_with_defaults_with_stereotype(@config)
+    it "creates a new page with stereotype.post.page_type ClassName" do
+      @page.class_name.should == "ArchivePage"
+    end
+    
+    it "creates a new page with stereotype.post.parts Page Parts and Filters" do
+      @page.parts[0].name.should == "body"
+      @page.parts[1].name.should == "sidebar"
+      @page.parts[0].filter_id.should == "Textile"
+      @page.parts[1].filter_id.should == "Markdown"
     end
   end
-  
-  def add_to_config_table
-    post_layout = Radiant::Config.create(:key => 'stereotype.post.layout', :value => 'Normal')
-    post_parts = Radiant::Config.create(:key => 'stereotype.post.parts', :value => 'body:Textile,sidebar:Markdown')
-    post_page_type = Radiant::Config.create(:key => 'stereotype.post.page_type', :value => '')    
-    [post_layout, post_parts, post_page_type]
+
+  def config_hash    
+    {
+      "stereotype.post.page_type" => "ArchivePage",
+      "stereotype.post.layout" => "Main",
+      "stereotype.post.parts" => "body:Textile,sidebar:Markdown"
+    }
   end
-  
 end

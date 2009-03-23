@@ -13,6 +13,7 @@ class StereotypeExtension < Radiant::Extension
   # end
   
   def activate
+    throw "Custom Fields Extension must be loaded before Stereotype Extension" unless defined?(CustomFieldsExtension)
     Page.send :include, Stereotype::PageExtensions
     Admin::PagesController.class_eval do
       include Stereotype::PagesControllerExtensions
