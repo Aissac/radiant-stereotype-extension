@@ -4,20 +4,21 @@ Radiant Stereotype Extension
 About
 ---
 
-An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant]. With this extension, creating a new page becomes a lot easier, because you're able to set some attributes of the new page, like the page parts (along with filters), layout, page type.
+An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
  
 Features
 ---
 
-* Provides the ability to create standardized new pages
-* You can control the new page's parts, filters, layout and page type
+* Define named templates (stereotypes) for Pages;
+* Templates are assigned per-parent Page, making all children have the defined 'stereotype' by their parent;
+* You can specify the new page's parts, filters, layout and page type.
 
 Instalation
 ---
 
 Stereotype Extension has one dependency, the [Radiant Custom Fields Extension][rcfe].
 
-    git submodule add ....... github repository
+    git submodule add git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
 
 Because Stereotype Extension keeps the settings in the `Radiant::Config` table it is highly recommended to install the [Settings Extension][rse]
   
@@ -25,7 +26,7 @@ Because Stereotype Extension keeps the settings in the `Radiant::Config` table i
     
 Finally, install the [Stereotype Extension][rste]
 
-    git submodule add ....... github repository
+    git submodule add git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
     
 Configuration
 ---
@@ -34,22 +35,26 @@ To add stereotypes you need to add fields to the Radiant::Config table. There ar
 
 1. Page Parts (and filters)
 
-The key has to look like: `stereotype.name_of_the_stereotype.parts` and the value `body:markdown,sidebar:textile`
+The key has to look like: `stereotype.<name_of_the_stereotype>.parts` and the value `body:markdown,sidebar:textile`.
 
 2. Layout
 
-The key has to look like: `stereotype.name_of_the_stereotype.layout` and the value has to be the name of a layout (case sensitive)
+The key has to look like: `stereotype.<name_of_the_stereotype>.layout` and the value has to be the name of a layout (case sensitive)
 
 3. Page type
 
-The key should look like: `stereotype.name_of_the_stereotype.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
+The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
 
 Usage
 ---
 
-By using [Stereotype Extension][rste] you can control the way a new page is created. You can choose the new page parts along with their filters, the layout and the page type.
+1. Add stereotypes as described in the configuration section.
 
-[Stereotype Extension][rste] adds a drop down at the bottom of the page form. Setting a stereotype on a page will force all it's first level children to be created with the settings associated with the chosen stereotype.
+2. Edit/create a new page that has children and select a stereotype from the dropdown labeled "Stereotype". Child pages added to this page will be created with their attributes set by default to the fields you configured.
+
+3. ...
+
+4. Profit!
 
 [radiant]: http://radiantcms.org/
 [aissac]: http://aissac.ro

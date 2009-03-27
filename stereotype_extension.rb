@@ -2,8 +2,8 @@
 require_dependency 'application'
 
 class StereotypeExtension < Radiant::Extension
-  version "0.1"
-  description "Provides templates"
+  version "1.0"
+  description "Define templates for Pages' children in Radiant CMS."
   url "http://blog.aissac.ro/radiant/stereotype-extension/"
   
   # define_routes do |map|
