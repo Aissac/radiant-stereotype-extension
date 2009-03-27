@@ -56,6 +56,12 @@ Usage
 
 4. Profit!
 
+Contributors
+---
+
+* Cristi Duma
+* Istvan Hoka
+
 [radiant]: http://radiantcms.org/
 [aissac]: http://aissac.ro
 [rste]: http://blog.aissac.ro/radiant/stereotype-extension
