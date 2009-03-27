@@ -34,7 +34,7 @@ module Stereotype
       def new_with_defaults_with_stereotype(config = Radiant::Config)
         page = new
       
-        name = CustomField.find(:first, :conditions => { :name => "stereotype", :page_id => page.parent_id})
+        name = CustomField.find(:first, :conditions => { :name => "stereotype", :page_id => page.parent_id}).value
       
         if name
           parts_and_filters = config["stereotype.#{name}.parts"].blank? ? config["defaults.page.parts"].to_s.strip.split(',') : config["stereotype.#{name}.parts"].to_s.strip.split(',')

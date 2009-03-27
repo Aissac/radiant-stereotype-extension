@@ -1,3 +1,4 @@
+<% stereotype = page.custom_fields.find(:first, :conditions => ["name = ?", "stereotype"]) %>
 <td>  
-  <%= page.custom_fields.find(:first, :conditions => ["name = ?", "stereotype"]) %>
+    <%= stereotype.value if stereotype %>
 </td>

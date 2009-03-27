@@ -4,15 +4,18 @@ Radiant Stereotype Extension
 About
 ---
 
-An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
-
+An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant]. With this extension, creating a new page becomes a lot easier, because you're able to set some attributes of the new page, like the page parts (along with filters), layout, page type.
+ 
 Features
 ---
+
+* Provides the ability to create standardized new pages
+* You can control the new page's parts, filters, layout and page type
 
 Instalation
 ---
 
-Stereotype Extension has one dependency, the [Radiant Custom Fileds Extension][rcfe].
+Stereotype Extension has one dependency, the [Radiant Custom Fields Extension][rcfe].
 
     git submodule add ....... github repository
 
@@ -27,11 +30,19 @@ Finally, install the [Stereotype Extension][rste]
 Configuration
 ---
 
-To add stereotypes you need to add fields to the Radiant::Config table. The table has the following structure:
+To add stereotypes you need to add fields to the Radiant::Config table. There are three types of settings for each stereotype:
 
-     Radiant::Config(id: integer, key: string, value: string, description: text)
-     
+1. Page Parts (and filters)
 
+The key has to look like: `stereotype.name_of_the_stereotype.parts` and the value `body:markdown,sidebar:textile`
+
+2. Layout
+
+The key has to look like: `stereotype.name_of_the_stereotype.layout` and the value has to be the name of a layout (case sensitive)
+
+3. Page type
+
+The key should look like: `stereotype.name_of_the_stereotype.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
 
 Usage
 ---
