@@ -65,5 +65,5 @@ Contributors
 [radiant]: http://radiantcms.org/
 [aissac]: http://aissac.ro
 [rste]: http://blog.aissac.ro/radiant/stereotype-extension
-[rcfe]: htpp://blog.aissac.ro/radiant/custom-fields-extension
+[rcfe]: http://blog.aissac.ro/radiant/custom-fields-extension
 [rse]: http://github.com/Squeegy/radiant-settings/tree/master
