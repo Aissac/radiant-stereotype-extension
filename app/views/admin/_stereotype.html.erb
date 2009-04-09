@@ -1,8 +1,0 @@
-<label for="page[stereotype]">Stereotype:</label>
-
-<select id="page_stereotype" name="page[stereotype]">
-  <option value="">&lt;none&gt;</option>
-  <% @stereotypes.each do |st| %>
-    <option value="<%= st %>" <%= 'selected="selected"' if st == model.stereotype %>><%= st.capitalize %></option>
-  <% end -%>
-</select>
