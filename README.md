@@ -33,32 +33,32 @@ Configuration
 
 To add stereotypes you need to add fields to the Radiant::Config table. There are three types of settings for each stereotype:
 
-1. Page Parts (and filters)
+1.) Page Parts (and filters)
 
 The key has to look like: `stereotype.<name_of_the_stereotype>.parts` and the value `body:markdown,sidebar:textile`.
 
-2. Layout
+2.) Layout
 
 The key has to look like: `stereotype.<name_of_the_stereotype>.layout` and the value has to be the name of a layout (case sensitive)
 
-3. Page type
+3.) Page type
 
 The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
 
-4. Status
+4.) Status
 
 The key has to look like: `stereotype.<name_of_stereotype>.status` and the value has to be a valid `status` attribute of the page: draft, hidden, reviewed, published
 
 Usage
 ---
 
-1. Add stereotypes as described in the configuration section.
+1.) Add stereotypes as described in the configuration section.
 
-2. Edit/create a new page that has children and select a stereotype from the dropdown labeled "Stereotype". Child pages added to this page will be created with their attributes set by default to the fields you configured.
+2.) Edit/create a new page that has children and select a stereotype from the dropdown labeled "Stereotype". Child pages added to this page will be created with their attributes set by default to the fields you configured.
 
-3. ...
+3.) ...
 
-4. Profit!
+4.) Profit!
 
 Contributors
 ---
