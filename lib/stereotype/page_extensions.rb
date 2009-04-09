@@ -55,6 +55,9 @@ module Stereotype
           st_class_name = config["stereotype.#{name}.page_type"]
           page.class_name = st_class_name if st_class_name
           
+          st_status = config["stereotype.#{name}.status"]
+          page.status = Status[st_status] if st_status
+          
           page
         else
           new_with_defaults_without_stereotype(config)

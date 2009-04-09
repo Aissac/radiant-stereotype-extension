@@ -12,7 +12,7 @@ describe Admin::PagesController do
     
     before(:each) do
       @config_records = add_to_config_table
-      @config_keys = ['stereotype.post.layout', 'stereotype.post.parts', 'stereotype.post.page_type']
+      @config_keys = ['stereotype.post.layout', 'stereotype.post.parts', 'stereotype.post.page_type', 'stereotype.post.status']
       @stereotypes = ['post']
       Radiant::Config.stub!(:find).and_return(@config_records)
       @config_records.stub!(:map).and_return(@config_keys)
@@ -35,8 +35,9 @@ describe Admin::PagesController do
   def add_to_config_table
     post_layout = Radiant::Config.create(:key => 'stereotype.post.layout', :value => 'Normal')
     post_parts = Radiant::Config.create(:key => 'stereotype.post.parts', :value => 'body:Textile,sidebar:Markdown')
-    post_page_type = Radiant::Config.create(:key => 'stereotype.post.page_type', :value => '')    
-    [post_layout, post_parts, post_page_type]
+    post_page_type = Radiant::Config.create(:key => 'stereotype.post.page_type', :value => '')
+    post_status = Radiant::Config.create(:key => 'stereotype.post.status', :value => 'published')    
+    [post_layout, post_parts, post_page_type, post_status]
   end
   
 end

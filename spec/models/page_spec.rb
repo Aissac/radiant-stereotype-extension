@@ -54,13 +54,18 @@ describe Page do
       @page.parts[0].filter_id.should == "Textile"
       @page.parts[1].filter_id.should == "Markdown"
     end
+    
+    it "creates a new page with stereotype.post.status Status" do
+      @page.status_id.should == Status["published"].id
+    end
   end
 
   def config_hash    
     {
       "stereotype.post.page_type" => "ArchivePage",
       "stereotype.post.layout" => "Main",
-      "stereotype.post.parts" => "body:Textile,sidebar:Markdown"
+      "stereotype.post.parts" => "body:Textile,sidebar:Markdown",
+      "stereotype.post.status" => "published"
     }
   end
 end

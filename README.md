@@ -11,7 +11,7 @@ Features
 
 * Define named templates (stereotypes) for Pages;
 * Templates are assigned per-parent Page, making all children have the defined 'stereotype' by their parent;
-* You can specify the new page's parts, filters, layout and page type.
+* You can specify the new page's parts, filters, layout, page type and status.
 
 Instalation
 ---
@@ -44,6 +44,10 @@ The key has to look like: `stereotype.<name_of_the_stereotype>.layout` and the v
 3. Page type
 
 The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
+
+4. Status
+
+The key has to look like: `stereotype.<name_of_stereotype>.status` and the value has to be a valid `status` attribute of the page: draft, hidden, reviewed, published
 
 Usage
 ---
