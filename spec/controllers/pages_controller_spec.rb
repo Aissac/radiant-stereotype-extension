@@ -19,7 +19,6 @@ describe Admin::PagesController do
       }
       
       configuration.each {|k,v| Radiant::Config.create!(:key => k, :value => v) }
-      
     end
     
     it "should be succesful" do
