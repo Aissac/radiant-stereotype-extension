@@ -11,33 +11,27 @@ describe Admin::PagesController do
   describe "handling GET index" do
     
     before(:each) do
-      @config_records = add_to_config_table
-      @config_keys = ['stereotype.post.layout', 'stereotype.post.parts', 'stereotype.post.page_type', 'stereotype.post.status']
-      @stereotypes = ['post']
-      Radiant::Config.stub!(:find).and_return(@config_records)
-      @config_records.stub!(:map).and_return(@config_keys)
-      @config_keys.stub!(:collect).and_return(@stereotypes)
+      configuration = {
+        'stereotype.post.layout'    => 'Normal',
+        'stereotype.post.parts'     => 'body:Textile,sidebar:Markdown',
+        'stereotype.post.page_type' => '',
+        'stereotype.post.status'    => 'published'
+      }
+      
+      configuration.each {|k,v| Radiant::Config.create!(:key => k, :value => v) }
+      
     end
     
-    it "is succesful" do
+    it "should be succesful" do
       get :index
       response.should be_success
     end
     
-    it "should find stereotypes from the Radiant::Config table" do
-      Radiant::Config.should_receive(:find).and_return(@config_records)
-      @config_records.should_receive(:map).and_return(@config_keys)
-      @config_keys.should_receive(:collect).and_return(@stereotypes)
+    it "should assign :stereotypes" do
       get :index
+      assigns(:stereotypes).should == ['post']
     end
-  end
-  
-  def add_to_config_table
-    post_layout = Radiant::Config.create(:key => 'stereotype.post.layout', :value => 'Normal')
-    post_parts = Radiant::Config.create(:key => 'stereotype.post.parts', :value => 'body:Textile,sidebar:Markdown')
-    post_page_type = Radiant::Config.create(:key => 'stereotype.post.page_type', :value => '')
-    post_status = Radiant::Config.create(:key => 'stereotype.post.status', :value => 'published')    
-    [post_layout, post_parts, post_page_type, post_status]
+    
   end
   
 end

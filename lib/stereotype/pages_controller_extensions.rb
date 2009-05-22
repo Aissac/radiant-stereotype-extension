@@ -8,7 +8,8 @@ module Stereotype
     end
     
     def find_stereotypes
-      @stereotypes = Radiant::Config.find(:all, :conditions => [ "'key' LIKE ?", "stereotype%"]).map(&:key).collect{|k| k.split('.')[1]}.uniq
+      quoted_column_name = Radiant::Config.connection.quote_column_name('key')
+      @stereotypes = Radiant::Config.find(:all, :conditions => [ "#{quoted_column_name} LIKE ?", "stereotype%"]).map(&:key).collect{|k| k.split('.')[1]}.uniq
     end
   end
 end
