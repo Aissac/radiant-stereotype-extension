@@ -30,6 +30,13 @@ Finally, install the [Stereotype Extension][rste]
 
     git submodule add git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
     
+###Note
+
+To get the Radiant 0.7.1 version tag you need to:
+
+    cd vendor/extensions/custom_fields/
+    git checkout v0.7
+    
 Configuration
 ---
 
