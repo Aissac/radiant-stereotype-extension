@@ -5,6 +5,8 @@ About
 ---
 
 An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
+
+Tested on Radiant 0.7.1 and 0.8.
  
 Features
 ---
