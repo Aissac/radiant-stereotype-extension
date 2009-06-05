@@ -34,7 +34,7 @@ Finally, install the [Stereotype Extension][rste]
 
 To get the Radiant 0.7.1 version tag you need to:
 
-    cd vendor/extensions/custom_fields/
+    cd vendor/extensions/stereotype/
     git checkout v0.7
     
 Configuration
