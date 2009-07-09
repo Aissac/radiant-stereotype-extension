@@ -58,6 +58,10 @@ The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and th
 
 The key has to look like: `stereotype.<name_of_stereotype>.status` and the value has to be a valid `status` attribute of the page: draft, hidden, reviewed, published
 
+5.) Stereotype
+
+The key has to look like: `stereotype.<name_of_stereotype>.stereotype` and the value has to be a valid stereotype.
+
 Usage
 ---
 

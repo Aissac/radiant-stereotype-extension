@@ -58,6 +58,10 @@ describe Page do
     it "creates a new page with stereotype.post.status Status" do
       @page.status_id.should == Status["published"].id
     end
+    
+    it "creates a new page with stereotype.post.stereotype Stereotype" do
+      @page.stereotype.should == "post_child"
+    end
   end
 
   def config_hash    
@@ -65,7 +69,8 @@ describe Page do
       "stereotype.post.page_type" => "ArchivePage",
       "stereotype.post.layout" => "Main",
       "stereotype.post.parts" => "body:Textile,sidebar:Markdown",
-      "stereotype.post.status" => "published"
+      "stereotype.post.status" => "published",
+      "stereotype.post.stereotype" => "post_child"
     }
   end
 end
