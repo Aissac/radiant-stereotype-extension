@@ -6,7 +6,7 @@ About
 
 An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
 
-Tested on Radiant 0.7.1 and 0.8.
+Tested on Radiant 0.7.1, 0.8 and 0.9 RC1.
  
 Features
 ---
@@ -29,13 +29,6 @@ Because Stereotype Extension keeps the settings in the `Radiant::Config` table i
 Finally, install the [Stereotype Extension][rste]
 
     git submodule add git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
-    
-###Note
-
-To get the Radiant 0.7.1 version tag you need to:
-
-    cd vendor/extensions/stereotype/
-    git checkout v0.7
     
 Configuration
 ---
@@ -76,11 +69,13 @@ Usage
 Contributors
 ---
 
-* Cristi Duma
-* Istvan Hoka
+* Cristi Duma ([@cristi_duma][cd])
+* Istvan Hoka ([@ihoka][ih])
 
 [radiant]: http://radiantcms.org/
 [aissac]: http://aissac.ro
 [rste]: http://blog.aissac.ro/radiant/stereotype-extension
 [rcfe]: http://blog.aissac.ro/radiant/custom-fields-extension
 [rse]: http://github.com/Squeegy/radiant-settings/tree/master
+[cd]: http://twitter.com/cristi_duma
+[ih]: http://twitter.com/ihoka
