@@ -5,7 +5,7 @@ describe Admin::PagesController do
   dataset :users
   
   before(:each) do
-    login_as :developer
+    login_as :existing
   end
   
   describe "handling GET index" do

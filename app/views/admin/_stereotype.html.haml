@@ -1,9 +1,3 @@
-%label{:for => "page[stereotype]"} Stereotype
-%select#page_stereotype{:name => "page[stereotype]"}
-  %option{:value =>""} &lt;none&gt;
-  - @stereotypes.each do |st|
-    - if st == model.stereotype
-      %option{:value => st, :selected => "selected"}
-        = st.to_s.capitalize
-    - else
-      %option{:value => st}= st.to_s.capitalize
+%p
+  = f.label :stereotype, "Stereotype"  
+  = f.select :stereotype, [['<none>', '']] + @stereotypes.map { |s| [s, s] }

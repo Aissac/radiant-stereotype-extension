@@ -19,7 +19,7 @@ class StereotypeExtension < Radiant::Extension
       include Stereotype::PagesControllerExtensions
     end
     
-    admin.page.edit.add :parts_bottom, "admin/stereotype", :after => "edit_layout_and_type"
+    admin.page.edit.add :layout_row, "admin/stereotype"
     admin.page.index.add :sitemap_head, 'admin/stereotype_th', :after => "remove_child_column"
     admin.page.index.add :node, 'admin/stereotype_td', :after => "remove_child_column"
   end
