@@ -20,16 +20,24 @@ Instalation
 
 Stereotype Extension has one dependency, the [Radiant Custom Fields Extension][rcfe].
 
-    git submodule add git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
+    git clone git://github.com/Aissac/radiant-custom-fields-extension.git vendor/extensions/custom_fields
 
 Because Stereotype Extension keeps the settings in the `Radiant::Config` table it is highly recommended to install the [Settings Extension][rse]
   
-    git submodule add git://github.com/Squeegy/radiant-settings.git vendor/extensions/settings
+    git clone git://github.com/Squeegy/radiant-settings.git vendor/extensions/settings
     
 Finally, install the [Stereotype Extension][rste]
 
-    git submodule add git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
-    
+    git clone git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
+
+###Note
+
+The git branches hold stable versions of the extension for older version of Radiant CMS. To checkout one of these branches:
+
+    git clone git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
+    cd vendor/extensions/stereotype
+    git checkout -b <branch-name> origin/<remote-branch-name>
+
 Configuration
 ---
 

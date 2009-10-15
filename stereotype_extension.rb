@@ -1,17 +1,10 @@
-# Uncomment this if you reference any of your controllers in activate
 require_dependency 'application_controller'
 
 class StereotypeExtension < Radiant::Extension
   version "1.0"
   description "Define templates for Pages' children in Radiant CMS."
   url "http://blog.aissac.ro/radiant/stereotype-extension/"
-  
-  # define_routes do |map|
-  #   map.namespace :admin, :member => { :remove => :get } do |admin|
-  #     admin.resources :stereotype
-  #   end
-  # end
-  
+
   def activate
     throw "Custom Fields Extension must be loaded before Stereotype Extension" unless defined?(CustomFieldsExtension)
     Page.send :include, Stereotype::PageExtensions
@@ -25,7 +18,5 @@ class StereotypeExtension < Radiant::Extension
   end
   
   def deactivate
-    # admin.tabs.remove "Stereotype"
   end
-  
 end
