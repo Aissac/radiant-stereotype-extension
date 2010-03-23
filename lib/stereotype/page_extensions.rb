@@ -44,7 +44,7 @@ module Stereotype
             part_filter = part_and_filter.to_s.split(':')
             
             st_name = part_filter[0].nil? ? "" : part_filter[0]
-            st_filter = part_filter[1].nil? ? "" : part_filter[1].gsub('_', ' ').capitalize
+            st_filter = part_filter[1].nil? ? "" : part_filter[1]
             page.parts << PagePart.new(:name => st_name, :filter_id => st_filter)
           end
       
