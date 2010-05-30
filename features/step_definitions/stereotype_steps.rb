@@ -1,46 +1,26 @@
-Given /^I am logged in as admin$/ do
-  Given "I go to to \"the welcome page\""
-   When "I fill in \"Username\" with \"admin\""
-   When "I fill in \"Password\" with \"password\""
-   When "I press \"Login\""
+Given /^I am logged in as "([^\"]*)"$/ do |role|
+  Given %Q{an #{role} "#{role}" exists with login: "#{role}", password: "secret"}
+  When %Q{I am on the welcome page}
+   And %Q{I fill in "Username or E-mail Address" with "#{role}"}
+   And %Q{I fill in "Password" with "secret"}
+   And %Q{I press "Login"}
 end
 
-When /^I set the stereotype to "([^\"]*)" on the "([^\"]*)" page$/ do |stereotype, page|
-  When "I follow \"#{page}\""
-  When "I select \"#{stereotype}\" from \"page_stereotype\""
-  When "I press \"Save Changes\""
+Given /^the page structure exists$/ do
+  Given %Q{a home page "hp" exists with title: "Home Page"}
+  Given %Q(a layout "main" exists with name: "Main")
 end
 
-When /^I fill in all needed information in the new page$/ do
-  When "I fill in \"Page Title\" with \"First Stereotype Child\""
-  When "I fill in \"Slug\" with \"first-stereotype-child\""
-  When "I fill in \"Breadcrumb\" with \"First Stereotype Child\""
+Given /^the "([^\"]*)" stereotype exists$/ do |st|
+  Radiant::Config["stereotype.#{st}.parts"] = "body:Markdown,sidebar:Textile"
+  Radiant::Config["stereotype.#{st}.layout"] = 'Main'
+  Radiant::Config["stereotype.#{st}.status"] = 'Published'
+  Radiant::Config["stereotype.#{st}.page_type"] = 'ArchivePage'
 end
 
-When /^I create a new child for the "([^\"]*)" page$/ do |page|
-  visit new_admin_page_child_path(pages(:with_stereotype).id)
-end
-
-Then /^the new page should have the body page part with Markdown filter$/ do
-  @page = pages(:with_stereotype).children.first
-  @page.parts[0].name.should == "body"
-  @page.parts[0].filter_id.should == "Markdown"
-end
-
-Then /^the new page should have the sidebar page part with Textile filter$/ do
-  @page = pages(:with_stereotype).children.first
-  @page.parts[1].name.should == "sidebar"
-  @page.parts[1].filter_id.should == "Textile"
-end
-
-Then /^the new page should have the "([^\"]*)" layout$/ do |layout|
-  pages(:with_stereotype).children.first.layout.name.should == layout
-end
-
-Then /^the new page should have status "([^\"]*)"$/ do |arg1|
-  pages(:with_stereotype).children.first.status.should == Status["published"]
-end
-
-Then /^the new page should have "([^\"]*)" page type$/ do |arg1|
-  pages(:with_stereotype).children.first.class_name.should == "ArchivePage"
+When /^I follow "([^\"]*)" for #{capture_model}$/ do |link, target|
+  record = model(target)
+  with_scope("##{dom_id(record)}") do
+    click_link(link)
+  end
 end

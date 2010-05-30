@@ -1,7 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Page do
-  
   dataset :pages, :custom_fields
   
   before do

@@ -4,7 +4,8 @@ module NavigationHelpers
     
     when /the welcome page/
       welcome_path
-    
+    when /the admin pages index/
+      admin_pages_path
     else
       raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
         "Now, go and add a mapping in features/support/paths.rb"

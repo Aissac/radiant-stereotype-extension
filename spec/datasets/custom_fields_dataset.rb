@@ -1,5 +1,4 @@
 class CustomFieldsDataset < Dataset::Base
-
   uses :pages
   uses :layouts
   def load
