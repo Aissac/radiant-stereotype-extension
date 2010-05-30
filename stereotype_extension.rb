@@ -1,7 +1,7 @@
 require_dependency 'application_controller'
 
 class StereotypeExtension < Radiant::Extension
-  version "1.0"
+  version "0.9" # this version is compatible with Radiant 0.9RC2
   description "Define templates for Pages' children in Radiant CMS."
   url "http://blog.aissac.ro/radiant/stereotype-extension/"
 

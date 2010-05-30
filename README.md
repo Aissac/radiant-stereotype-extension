@@ -6,7 +6,7 @@ About
 
 An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
 
-Tested on Radiant 0.7.1, 0.8 and 0.9 RC1.
+Tested on Radiant 0.7.1, 0.8 and 0.9 RC2.
  
 Features
 ---
@@ -14,6 +14,22 @@ Features
 * Define named templates (stereotypes) for Pages;
 * Templates are assigned per-parent Page, making all children have the defined 'stereotype' by their parent;
 * You can specify the new page's parts, filters, layout, page type and status.
+
+Important Notice!
+---
+
+The git branches of this repository hold stable versions of the extension for older versions of Radiant CMS. For example the _0.8_ branch is compatible with Radiant 0.8. 
+
+To checkout one of these branches:
+
+    git clone git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
+    cd vendor/extensions/stereotype
+    git checkout -b <branch-name> origin/<remote-branch-name>
+
+As an example, if you're working on Radiant 0.8 you will need to checkout the 0.8 branch:
+    
+    cd vendor/extensions/stereotype
+    git checkout -b my_branch origin/0.8
 
 Instalation
 ---
@@ -30,13 +46,6 @@ Finally, install the [Stereotype Extension][rste]
 
     git clone git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
 
-###Note
-
-The git branches hold stable versions of the extension for older version of Radiant CMS. To checkout one of these branches:
-
-    git clone git://github.com/Aissac/radiant-stereotype-extension.git vendor/extensions/stereotype
-    cd vendor/extensions/stereotype
-    git checkout -b <branch-name> origin/<remote-branch-name>
 
 Configuration
 ---
