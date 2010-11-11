@@ -11,8 +11,7 @@ describe Page do
     @page_first.should be_valid
   end
   
-  describe Page, "handling update_custom_fields" do
-    
+  describe Page, "#update_custom_fields" do
     it "finds the coresponding custom_field (stereotype)" do
       @page_first.custom_fields.should == [custom_fields(:first_st)]
       @page_first.save
@@ -31,11 +30,10 @@ describe Page do
     end
   end
   
-  describe Page, "handling new_with_defaults_with_stereotype" do
-    
+  describe Page, "#new_with_defaults_with_stereotype" do
     before do
-    @parent = pages(:parent)
-    @page = @parent.children.new_with_defaults_with_stereotype(config_hash)
+      @parent = pages(:parent)
+      @page = @parent.children.new_with_defaults_with_stereotype(config_hash)
     end
 
     it "creates a new page with stereotype.post.layout Layout" do
@@ -63,7 +61,7 @@ describe Page do
     end
   end
 
-  def config_hash    
+  def config_hash
     {
       "stereotype.post.page_type" => "ArchivePage",
       "stereotype.post.layout" => "Main",

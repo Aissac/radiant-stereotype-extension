@@ -9,7 +9,6 @@ describe Admin::PagesController do
   end
   
   describe "handling GET index" do
-    
     before(:each) do
       configuration = {
         'stereotype.post.layout'      => 'Normal',
@@ -31,7 +30,5 @@ describe Admin::PagesController do
       get :index
       assigns(:stereotypes).should == ['post']
     end
-    
   end
-  
 end

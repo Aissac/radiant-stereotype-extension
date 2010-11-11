@@ -4,7 +4,7 @@ module Stereotype
     def self.included(base)
       base.extend ClassMethods
       base.class_eval do
-        class <<self
+        class << self
           alias_method_chain :new_with_defaults, :stereotype
         end
         after_save :update_custom_fields
