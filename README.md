@@ -6,7 +6,9 @@ About
 
 An extension by [Aissac][aissac] that adds templating support to [Radiant CMS][radiant].
 
-Tested on Radiant 0.7.1, 0.8 and 0.9 RC2.
+Tested on Radiant 0.7.1, 0.8 and 0.9.1.
+
+Checkout the [screencast][rc]!
  
 Features
 ---
@@ -50,23 +52,23 @@ Finally, install the [Stereotype Extension][rste]
 Configuration
 ---
 
-To add stereotypes you need to add fields to the Radiant::Config table. There are three types of settings for each stereotype:
+To add stereotypes you need to add fields to the Radiant::Config table. There are five types of settings for each stereotype:
 
 1.) Page Parts (and filters)
 
-The key has to look like: `stereotype.<name_of_the_stereotype>.parts` and the value `body:markdown,sidebar:textile`.
+The key has to look like: `stereotype.<name_of_the_stereotype>.parts` and the value `body:Markdown,sidebar:Textile` (case sensitive).
 
 2.) Layout
 
-The key has to look like: `stereotype.<name_of_the_stereotype>.layout` and the value has to be the name of a layout (case sensitive)
+The key has to look like: `stereotype.<name_of_the_stereotype>.layout` and the value has to be the name of a layout (case sensitive).
 
 3.) Page type
 
-The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage)
+The key should look like: `stereotype.<name_of_the_stereotype>.page_type` and the value has to be a valid `class_name` attribute of the Page class. (Examples: ArchivePage, FileNotFoundPage or ArchiveMonthIndexPage).
 
 4.) Status
 
-The key has to look like: `stereotype.<name_of_stereotype>.status` and the value has to be a valid `status` attribute of the page: draft, hidden, reviewed, published
+The key has to look like: `stereotype.<name_of_stereotype>.status` and the value has to be a valid `status` attribute of the page: draft, hidden, reviewed, published.
 
 5.) Stereotype
 
@@ -83,16 +85,32 @@ Usage
 
 4.) Profit!
 
+I18n
+---
+
+This extension is translated to English and Romanian.
+
+If you happen to translate it to some other languages please send a pull request.
+
+Patches
+---
+
+If you want to contribute features or fixes please write your specs/cucumber features and code and submit pull requests to these github users:
+
+  * cristi
+  * ihoka
+
 Contributors
 ---
 
-* Cristi Duma ([@cristi_duma][cd])
+* Cristi Duma ([@cristiduma][cd])
 * Istvan Hoka ([@ihoka][ih])
 
 [radiant]: http://radiantcms.org/
-[aissac]: http://aissac.ro
+[aissac]: http://aissac.ro/en
 [rste]: http://blog.aissac.ro/radiant/stereotype-extension
 [rcfe]: http://blog.aissac.ro/radiant/custom-fields-extension
 [rse]: http://github.com/Squeegy/radiant-settings/tree/master
-[cd]: http://twitter.com/cristi_duma
+[cd]: http://twitter.com/cristiduma
 [ih]: http://twitter.com/ihoka
+[rc]: http://radiantcms.org/blog/archives/2010/03/23/radiantcasts-episode-6-radiant-custom-fields-and-stereotype-extensions/

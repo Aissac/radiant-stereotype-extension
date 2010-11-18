@@ -13,9 +13,7 @@ describe Admin::PagesController do
       configuration = {
         'stereotype.post.layout'      => 'Normal',
         'stereotype.post.parts'       => 'body:Textile,sidebar:Markdown',
-        'stereotype.post.page_type'   => '',
-        'stereotype.post.status'      => 'published',
-        'stereotype.post.stereotype'  => ''
+        'stereotype.post.status'      => 'published'
       }
       
       configuration.each {|k,v| Radiant::Config.create!(:key => k, :value => v) }

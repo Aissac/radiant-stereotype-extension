@@ -31,43 +31,90 @@ describe Page do
   end
   
   describe Page, "#new_with_defaults_with_stereotype" do
-    before do
-      @parent = pages(:parent)
-      @page = @parent.children.new_with_defaults_with_stereotype(config_hash)
+    subject { pages(:parent).children.new_with_defaults_with_stereotype(config) }
+    
+    context "specifying page parts and filters" do
+      context "when page parts and filters are specified in stereotype" do
+        let(:config) {
+          { "stereotype.post.parts" => "body:Textile,sidebar:Markdown" }
+        }
+        
+        it "creates a new page with specified parts and filters" do
+          subject.parts[0].name.should == "body"
+          subject.parts[1].name.should == "sidebar"
+          subject.parts[0].filter_id.should == "Textile"
+          subject.parts[1].filter_id.should == "Markdown"
+        end
+      end
+      
+      context "when page parts and filters are not specified in stereotype" do
+        let(:config) {
+          { 
+            "defaults.page.parts" => "body,extended",
+            "defaults.page.filter" => "Textile"
+          }
+        }
+        
+        it "creates a new page with default parts and filters" do
+          subject.parts[0].name.should == "body"
+          subject.parts[1].name.should == "extended"
+          subject.parts[0].filter_id.should == "Textile"
+          subject.parts[1].filter_id.should == "Textile"
+        end
+      end
     end
+    
+    context "specifying status" do
+      context "when status specified by stereotype" do
+        let(:config) {
+          { "stereotype.post.status" => "Published" }
+        }
+        
+        it "creates a new page with specified status" do
+          subject.status_id.should == Status["published"].id
+        end
+      end
 
-    it "creates a new page with stereotype.post.layout Layout" do
-      layout = layouts(:main)
-      @page.layout_id.should == layout.id
+      context "when status not specified by stereotype" do
+        let(:config) {
+          { "defaults.page.status" => "draft" }
+        }
+        
+        it "creates a new page with default " do
+          subject.status_id.should == Status["draft"].id
+        end
+      end
     end
     
-    it "creates a new page with stereotype.post.page_type ClassName" do
-      @page.class_name.should == "ArchivePage"
+    context "specifying layout" do
+      let(:config) {
+        { "stereotype.post.layout" => "Main" }
+      }
+      
+      it "creates a new page with stereotype specified layout" do
+        layout = layouts(:main)
+        subject.layout_id.should == layout.id
+      end
+    end
+        
+    context "specifying page type" do
+      let(:config) {
+        { "stereotype.post.page_type" => "ArchivePage" }
+      }
+      
+      it "creates a new page with stereotype specified class name" do
+        subject.class_name.should == "ArchivePage"
+      end
     end
     
-    it "creates a new page with stereotype.post.parts Page Parts and Filters" do
-      @page.parts[0].name.should == "body"
-      @page.parts[1].name.should == "sidebar"
-      @page.parts[0].filter_id.should == "Textile"
-      @page.parts[1].filter_id.should == "Markdown"
+    context "specified stereotype" do
+      let(:config) {
+        { "stereotype.post.stereotype" => "post_child" }
+      }
+      
+      it "creates a new page with stereotype specified stereotype" do
+        subject.stereotype.should == "post_child"
+      end
     end
-    
-    it "creates a new page with stereotype.post.status Status" do
-      @page.status_id.should == Status["published"].id
-    end
-    
-    it "creates a new page with stereotype.post.stereotype Stereotype" do
-      @page.stereotype.should == "post_child"
-    end
-  end
-
-  def config_hash
-    {
-      "stereotype.post.page_type" => "ArchivePage",
-      "stereotype.post.layout" => "Main",
-      "stereotype.post.parts" => "body:Textile,sidebar:Markdown",
-      "stereotype.post.status" => "published",
-      "stereotype.post.stereotype" => "post_child"
-    }
   end
 end

@@ -31,41 +31,66 @@ module Stereotype
     end
     
     module ClassMethods
-      def new_with_defaults_with_stereotype(config = Radiant::Config)
+      def new_with_defaults_with_stereotype(config=Radiant::Config)
         page = new
       
         custom_field = CustomField.find(:first, :conditions => { :name => "stereotype", :page_id => page.parent_id})
         name = custom_field && custom_field.value
       
         if name
-          parts_and_filters = config["stereotype.#{name}.parts"].blank? ? config["defaults.page.parts"].to_s.strip.split(',') : config["stereotype.#{name}.parts"].to_s.strip.split(',')
+          set_page_parts(page, name, config)
           
-          parts_and_filters.each do |part_and_filter|
-            part_filter = part_and_filter.to_s.split(':')
-            
-            st_name = part_filter[0].nil? ? "" : part_filter[0]
-            st_filter = part_filter[1].nil? ? "" : part_filter[1]
-            page.parts << PagePart.new(:name => st_name, :filter_id => st_filter)
-          end
-      
-          st_layout = Layout.find_by_name(config["stereotype.#{name}.layout"])
-          st_layout_id = st_layout.nil? ? nil : st_layout.id
-          page.layout_id = st_layout_id if st_layout_id
-      
-          st_class_name = config["stereotype.#{name}.page_type"]
-          page.class_name = st_class_name if st_class_name
+          set_page_status(page, name, config)
+        
+          set_page_layout(page, name, config)
           
-          st_status = config["stereotype.#{name}.status"]
-          page.status = Status[st_status] if st_status
+          set_page_class_name(page, name, config)
           
-          st_stereotype = config["stereotype.#{name}.stereotype"]
-          page.stereotype = st_stereotype if st_stereotype
+          set_page_stereotype(page, name, config)
           
           page
         else
           new_with_defaults_without_stereotype(config)
         end
       end
+      private
+        def set_page_parts(page, name, config)
+           if config["stereotype.#{name}.parts"].blank?
+             page.parts << default_page_parts(config)
+           else
+             page.parts << stereotype_page_parts(name, config)
+           end
+             
+        end
+      
+        def stereotype_page_parts(name, config)
+          parts_and_filters = config["stereotype.#{name}.parts"].to_s.strip.split(',')
+        
+          parts_and_filters.map do |part_and_filter|
+            part_name, filter = part_and_filter.to_s.split(':')
+            PagePart.new(:name => part_name, :filter_id => filter)
+          end
+        end
+      
+        def set_page_status(page, name, config)
+          default_status = config["stereotype.#{name}.status"] || config['defaults.page.status']
+          page.status = Status[default_status] if default_status
+        end
+      
+        def set_page_layout(page, name, config)
+          default_layout = Layout.find_by_name(config["stereotype.#{name}.layout"])
+          page.layout_id = default_layout.id if default_layout
+        end
+      
+        def set_page_class_name(page, name, config)
+          default_page_type = config["stereotype.#{name}.page_type"]
+          page.class_name = default_page_type if default_page_type
+        end
+      
+        def set_page_stereotype(page, name, config)
+          default_stereotype = config["stereotype.#{name}.stereotype"]
+          page.stereotype = default_stereotype if default_stereotype
+        end
     end
   end
 end
